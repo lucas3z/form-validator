@@ -15,3 +15,5 @@ Form validator that checks if:
 
 - Manipulation of HTML Elements using Javascript
 - Adding/Removing CSS styles with Javascript
+
+Note: Project from [Brad Traversy's Course](https://vanillawebprojects.com/)
