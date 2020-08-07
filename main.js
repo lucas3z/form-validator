@@ -3,6 +3,8 @@ const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
+const dropdown = document.getElementById('dropdown');
+const closeBtn = document.getElementById('close');
 
 // Show input error message
 function showError(input, message) {
@@ -68,6 +70,17 @@ function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
+// Show Dropdown Message
+function dropdownMessage() {
+  setTimeout(() => {
+    dropdown.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+      dropdown.style.transform = 'translateY(-80px)';
+    }, 4000);
+  }, 500);
+}
+
 // Event listener
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -77,4 +90,12 @@ form.addEventListener('submit', (e) => {
   checkLength(password, 6, 25);
   checkEmail(email);
   checkPasswordsMatch(password, password2);
+
+  dropdownMessage();
 });
+
+// Dropdown Close Button
+closeBtn.addEventListener(
+  'click',
+  () => (dropdown.style.transform = 'translateY(-80px)')
+);
