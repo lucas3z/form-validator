@@ -6,6 +6,8 @@ const password2 = document.getElementById('password2');
 const dropdown = document.getElementById('dropdown');
 const closeBtn = document.getElementById('close');
 
+let counter = 0;
+
 // Show input error message
 function showError(input, message) {
   const formControl = input.parentElement;
@@ -25,6 +27,7 @@ function checkEmail(input) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (re.test(input.value.trim())) {
     showSuccess(input);
+    counter++;
   } else {
     showError(input, 'Email is not valid');
   }
@@ -37,6 +40,7 @@ function checkRequired(inputArr) {
       showError(input, `${getFieldName(input)} is required`);
     } else {
       showSuccess(input);
+      counter++;
     }
   });
 }
@@ -55,6 +59,7 @@ function checkLength(input, min, max) {
     );
   } else {
     showSuccess(input);
+    counter++;
   }
 }
 
@@ -62,12 +67,25 @@ function checkLength(input, min, max) {
 function checkPasswordsMatch(input1, input2) {
   if (input1.value !== input2.value) {
     showError(input2, 'Passwords do not match');
+  } else {
+    counter++;
   }
 }
 
 // Get fieldname
 function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+// Clear input values
+function clearInputValue(inputArr) {
+  setTimeout(() => {
+    inputArr.forEach((input) => {
+      const formControl = input.parentElement;
+      formControl.className = 'form-control';
+      input.value = '';
+    });
+  }, 1000);
 }
 
 // Show Dropdown Message
@@ -91,7 +109,14 @@ form.addEventListener('submit', (e) => {
   checkEmail(email);
   checkPasswordsMatch(password, password2);
 
-  dropdownMessage();
+  // Show message if all inputs are valid
+  if (counter === 8) {
+    dropdownMessage();
+    clearInputValue([username, email, password, password2]);
+    counter = 0;
+  } else {
+    counter = 0;
+  }
 });
 
 // Dropdown Close Button
