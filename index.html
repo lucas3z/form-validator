@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./style.css" />
     <title>Form Validator</title>
   </head>
@@ -40,6 +46,18 @@
         <button type="submit">Submit</button>
       </form>
     </div>
+
+    <div class="dropdown" id="dropdown">
+      <div class="icon">
+        <i class="far fa-check-circle"></i>
+      </div>
+      <div class="message">
+        <h3>Great!</h3>
+        <p>Your account has been created successfully.</p>
+        <button id="close">X</button>
+      </div>
+    </div>
+
     <script src="./main.js"></script>
   </body>
 </html>
